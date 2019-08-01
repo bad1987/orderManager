@@ -12,6 +12,9 @@
     <title><?php if (isset($title)) {  echo $title;  } ?>Siap pharma - Dashboard</title>
 
 
+    <!-- custom  style -->
+    <link href="<?php echo site_url('assets/css/adminstyle.css'); ?>" rel="stylesheet">
+
     <!-- Bootstrap core CSS-->
     <link href="<?php echo site_url('assets/vendor/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
 
@@ -30,13 +33,23 @@
     <!-- website logo for browsers -->
     <link rel="shortcut icon" href="<?php echo site_url('/assets/img/logo.ico'); ?>" type="image/x-icon" />
 
+    <script src="<?php echo site_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
+      <!-- Chosen script -->
+    <script src="<?php echo site_url('/assets/chosen/chosen.jquery.js'); ?>"></script>
+
+    <script>
+      $(document).ready(function(){
+        $(".chosen").chosen({no_results_text: "Oops, pas de resultat!"});
+      });
+    </script>
+
   </head>
 
   <body id="page-top">
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="index.html">Siap Pharma</a>
+      <a class="navbar-brand mr-1" href="<?php echo site_url("admindashboard") ?>">Siap Pharma</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -69,13 +82,14 @@
       </ul>
 
     </nav>
+    <p hidden id="baseurl"><?php echo site_url(); ?></p>
 
     <div id="wrapper">
 
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="admindashboard">
+          <a class="nav-link" href="<?php echo site_url("/admindashboard") ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
           </a>
@@ -89,10 +103,10 @@
             <h6 class="dropdown-header">Login Screens:</h6>
             <?php
               if(isset($this->session->id)){
-                echo '<a class="dropdown-item" href="admindlogout">Logout</a>';
+                echo '<a class="dropdown-item" href="'.site_url("admindlogout").'">Logout</a>';
               }
               else{
-                echo '<a class="dropdown-item" href="admindlogin">Login</a>';
+                echo '<a class="dropdown-item" href="'.site_url("admindlogin").'">Login</a>';
               }
             ?>
             <!-- <a class="dropdown-item" href="forgot-password.html">Forgot Password</a> -->
@@ -102,22 +116,22 @@
         <?php
           if(isset($this->session->id) && isset($this->session->isAdmin) && $this->session->isAdmin == 1){
               echo '<li class="nav-item">
-                <a class="nav-link" href="createclient">
+                <a class="nav-link" href="'.site_url("createclient").'">
                   <i class="fa fa-registered"></i>
                   <span>Enregistrer un nouveau Client</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="alteruser">
+                <a class="nav-link" href="'.site_url("alteruser").'">
                   <i class="fa fa-user" aria-hidden="true"></i>
                   <span>Modifier les informations d\'un client</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="clients">
+                <a class="nav-link" href="'.site_url("clients").'">
                   <i class="fas fa-address-card" aria-hidden="true"></i>
                   <span>Gestion des clients</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="update">
+                <a class="nav-link" href="'.site_url("update").'">
                   <i class="fas fa-capsules" aria-hidden="true"></i>
                   <span>Gestion des articles</span></a>
               </li>

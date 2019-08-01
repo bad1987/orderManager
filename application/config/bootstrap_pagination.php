@@ -31,7 +31,7 @@
  // $config['pagination']['last_tag_close'] = '</span></li>'
 
 $config['pagination_config'] = array(
-    'full_tag_open' => '<nav aria-label="Page navigation example"><ul class="pagination">',
+    'full_tag_open' => '<nav aria-label="Page navigation example" style="clear:both;"><ul class="pagination">',
     'full_tag_close' => '</ul></nav>',
     'num_tag_open' => '<li class="page-item"><span class="page-link">',
     'num_tag_close' => '</span></li>',

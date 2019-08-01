@@ -6,7 +6,17 @@ Class Espaceclient extends CI_Controller{
 
     public function __construct(){
         parent::__construct();
+        // security
+        $allowed = array(
+            'userlogin',
+            'validatelogin',
+        );
+        if (!isset($this->session->id) && ! in_array($this->router->fetch_method(), $allowed)) {
+           redirect('login');
+        }
+
         $this->load->model('queries');
+        // $this->load->helper('security');
         $result = $this->queries->categories();
         $this->processCategories($result);
     }
@@ -52,8 +62,8 @@ Class Espaceclient extends CI_Controller{
         }
         else{
         	$login_data = array(
-        		'username' => $this->input->post('username'),
-        		'password' => $this->input->post('password'),
+        		'username' => $this->input->post('username',TRUE),
+        		'password' => $this->input->post('password', TRUE),
         	);
 
         	$this->load->model('queries');
@@ -77,7 +87,8 @@ Class Espaceclient extends CI_Controller{
 
         		$this->session->set_userdata($sessionData);
                 $data['title'] = "Tableau de bord";
-        		$this->load->view('dashboard',$data);
+        		// $this->load->view('home');
+                redirect('dashboard');
         		// echo var_dump($result);
         	}
         	// echo "submited data are correct";
@@ -101,12 +112,12 @@ Class Espaceclient extends CI_Controller{
         else
         {
         	$data = array(
-        		'name' => $this->input->post('name'),
-        		'email' => $this->input->post('email'),
-        		'username' => $this->input->post('username'),
-        		'phoneNum' => $this->input->post('phoneNum'),
-        		'password' => sha1($this->input->post('password')),
-                'cat_Ref'  => $this->input->post('categorie'),
+        		'name' => $this->input->post('name',TRUE),
+        		'email' => $this->input->post('email',TRUE),
+        		'username' => $this->input->post('username',TRUE),
+        		'phoneNum' => $this->input->post('phoneNum',TRUE),
+        		'password' => sha1($this->input->post('password',TRUE)),
+                'cat_Ref'  => $this->input->post('categorie',TRUE),
         		'created_at' => date("Y-m-d G:i:s"),
         		'updated_at' => date("Y-m-d G:i:s"),
         		);

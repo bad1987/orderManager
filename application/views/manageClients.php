@@ -21,11 +21,10 @@
 
                 <div class="card-body">
                 	<!-- <?php echo form_open("register",['class' => 'form-horizontal']) ?> -->
-                	<form action="createClient" class="form-horizontal" method="post" enctype="multipart/form-data">
+                	<form action="<?php echo site_url('createClient') ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
 
                         <div class="form-group row">
-
-														<input type="file" name="userfile" size="20" />
+							<input type="file" name="userfile" size="20" />
                         </div>
 
                         <div class="form-group row mb-0">

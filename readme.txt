@@ -42,3 +42,19 @@ CREATE TABLE IF NOT EXISTS `orderManager`.`clients` (
   `CL_Intitule` VARCHAR(191) NULL,
   PRIMARY KEY (`client_id`))
 ENGINE = InnoDB;
+
+
+/************************************************************************/
+				modifications du 24/05/2019
+
+CREATE TABLE IF NOT EXISTS `orderManager`.`promotions` (
+  `id_promotion` INT NOT NULL AUTO_INCREMENT,
+  `date_debut` DATE NULL,
+  `date_fin` DATE NULL,
+  `sommeil` TINYINT(1) NULL DEFAULT 0,
+  `id_article` VARCHAR(50) NULL,
+  `quantite` INT(11) NULL,
+  `pourcentage` DOUBLE NULL,
+  `unite_gratuite` INT(11) NULL,
+  PRIMARY KEY (`id_promotion`))
+ENGINE = InnoDB;

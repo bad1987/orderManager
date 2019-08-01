@@ -21,7 +21,7 @@
 
                 <div class="card-body">
                 	<!-- <?php echo form_open("register",['class' => 'form-horizontal']) ?> -->
-                	<form action="validateRegister" class="form-horizontal" method="post" accept-charset="utf-8">
+                	<form action="<?php echo site_url('validateRegister') ?>" class="form-horizontal" method="post" accept-charset="utf-8">
 
                         <div class="form-group row">
                             <label for="name" class="col-md-3 col-form-label text-md-right">Name</label>

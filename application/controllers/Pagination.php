@@ -23,5 +23,4 @@ Class Pagination extends CI_Controller{
 		$this->load->view('paginationtest',$data);
 	}
 }
-
 ?>

@@ -10,8 +10,8 @@
                 </div>
 
                 <div class="card-body">
-                	<!-- <?php echo form_open("register",['class' => 'form-horizontal']) ?> -->
-                	<form action="checkadminlogin" class="form-horizontal" method="post" accept-charset="utf-8">
+                	<?php echo form_open("checkadminlogin",['class' => 'form-horizontal','method' => "post", 'accept-charset' => "utf-8"]) ?>
+                	<!-- <form action="checkadminlogin" class="form-horizontal" method="post" accept-charset="utf-8"> -->
                         <div class="form-group row">
                         	<label for="username" class="col-md-3 col-form-label text-md-right">Username</label>
 

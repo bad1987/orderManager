@@ -175,3 +175,368 @@ table.purpleHorizon thead th:first-child {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+/*Page d'acceuil*/
+#li_left{
+	/*background-color: orange;*/
+	font-family: serif;
+	font-weight: normal;
+}
+
+#li_left img{
+	width: 70%;
+	/*max-width: 400px;*/
+	height: auto;
+}
+
+#li_left .thumbnail{
+	background-color: white;
+	margin: 5px;
+	width: 250px;
+	text-align: center;
+	border-radius: 6px;
+	border: 1px solid #567def;
+	/*height: 250px;*/
+
+	-webkit-box-shadow: 0px 4px 19px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 4px 19px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 4px 19px 0px rgba(0,0,0,0.75);
+}
+
+#li_right{
+	/*background-color: green;*/
+}
+
+.li_h1{
+	font-family: serif;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: .5px 1px #567def;
+	margin-bottom: 25px;
+}
+
+
+@media screen and (max-width: 1024px){
+	#li_left .thumbnail{
+		width: 150px;
+		/*max-width: 400px;*/
+		height: auto;
+	}
+}
+
+/*slider*/
+
+
+/*************************************Promotions******************************************************************/
+#promo{
+	box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#promo .card-header{
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 20px;
+	font-family: serif;
+	color: white;
+	background-color: #19004d;
+	text-shadow: 1px 0.5px #012345;
+}
+
+#promo a{
+	text-decoration: none;
+
+}
+
+/*filter*/
+#filter li a{
+	text-decoration: none;
+}
+
+#filter li{
+	border: 0.5px solid #123def;
+	margin: 0;
+	padding: 5px;
+	box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+#filter li:hover{
+	background-color: black;
+	color: white;
+	box-shadow: 0 2px 5px rgba(9,0,0,0.3);
+}
+
+#promoNotAv{
+	padding: 10px;
+	/*margin-top: 2em;*/
+	box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+	height: auto;
+	text-shadow: 1px 0.5px #012345;
+	text-transform: uppercase;
+	font-size: 20px;
+}
+
+.scroll{
+	overflow-y: auto;
+	max-height: 500px;
+}
+
+.passcmd{
+	text-shadow: 1px 0.5px #012345;
+	font-size: 16px;
+	border-radius: 5px;
+	background-color: #280053;
+	color: white;
+}
+
+/*annonce promotions*/
+#annoncepromo{
+	display: none;
+}
+@media screen and (max-width: 575px) {
+
+	@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+
+	@keyframes showup {
+		0% {opacity: 0;}
+		20% {opacity: 1;}
+		80% {opacity: 1;}
+		100% {opacity: 0;}
+	}
+
+	@keyframes slidein {
+		0% {margin-left: -800px;}
+		20% {margin-left: -800px;}
+		35% {margin-left: 0px;}
+		100% {margin-left: 0px;}
+	}
+
+	@keyframes reveal {
+		0% {opacity: 0;width: 0px;}
+		20% {opacity: 1;width: 0px;}
+		30% {width: 355px;}
+		80% {opacity: 1;}
+		100% {opacity: 0;width: 355px;}
+	}
+
+	#annoncepromo {
+	  text-align:center;
+	  background:linear-gradient(141deg, #ccc 25%, #eee 40%, #ddd 55%);
+	  color:#555;
+	  font-family:'Roboto';
+	  font-weight:300;
+	  font-size:12px;
+	  /*padding-top:40vh;*/
+	  height:auto;
+	  width: 100%;
+	  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+	  text-transform: uppercase;
+	  text-shadow: 1px 0.5px #012345;
+	  overflow:hidden;
+	  -webkit-backface-visibility: hidden;
+	  -webkit-perspective: 1000;
+	  -webkit-transform: translate3d(0,0,0);
+	  position: relative;
+	  top: -30px;
+	  display: block;
+	}
+
+	#annoncepromo div{
+		display: inline-block;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+
+	#annoncepromo div:first-of-type{
+		animation: showup 7s infinite;
+	}
+
+	#annoncepromo div:last-of-type span{
+		margin-left: -355px;
+		animation: slidein 7s infinite;
+	}
+
+	/*table promotions*/
+	.tabPromo{
+		table-layout: fixed;
+		font-size: 12px;
+	}
+
+	.pagetitle, .productname{
+		font-size: 22px;
+	}
+
+}
+
+/*table detail*/
+@media screen and (max-width: 424px){
+	.tabPromo{
+		font-size: 11px;
+	}
+}
+
+/****************************************************************************************************************/
+
+/******************************************USER STATISTICS*******************************************************/
+
+.mstat{
+	background-color: #9abcde;
+	border: #bbb 1px solid;
+	border-radius: 5px;
+	padding: 5px;
+	display: block;
+	margin: 2px;
+	box-sizing: border-box;
+	float: left;
+	width: auto;
+	height: 190px;
+	word-wrap: break-word;
+	font-weight: bold;
+}
+
+@media screen and (max-width: 768px){
+	.mstat{
+		max-width: 180px;
+	}
+
+	.historyHeader{
+		font-size: 18px;
+	}
+}
+
+@media screen and (max-width: 425px){
+	.mstat{
+		max-width: 160px;
+		font-size: 13px;
+	}
+}
+
+@media screen and (max-width: 375px){
+	.mstat{
+		max-width: 140px;
+		font-size: 12px;
+	}
+}
+
+#detailCmde{
+	 display: none;
+}
+
+#detailCmde .row{
+	 border-bottom: 1px dashed black;
+	 /*border-left: 1px solid black;*/
+}
+/****************************************************************************************************************/
+
+/****************************************COMMANDES CLIENTS*******************************************************/
+
+.form{
+	box-shadow: 0px 4px 19px 0px rgba(0,0,0,0.75);
+}
+
+.valeurPanier{
+	/*visibility: hidden;*/
+	display: none;
+}
+
+
+
+@media screen and (max-width: 425px){
+	.cmdeTittle h1{
+		font-size: 22px;
+	}
+
+	.form{
+		text-align: center;
+		padding: 10px;
+	}
+
+	.form div:nth-child(2){
+		margin-bottom: 10px;
+	}
+}
+
+@media screen and (max-width: 375px){
+	.cmdeTittle h1{
+		font-size: 20px;
+	}
+}
+
+@media screen and (min-width: 768px){
+	.form div:first-child{
+		text-align: right;
+	}
+
+	.form{
+		height: 80px;
+		padding-top: 20px;
+	}
+
+	.valeurPanier{
+		min-height: 176px;
+	}
+}
+
+@media screen and (max-width: 768px){
+
+	.panier{
+		font-size: 13px;
+	}
+}
+.panier .card-body{
+	font-weight: bold;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1118px){
+	.panier .card-body span{
+		display: block;
+	}
+}
+
+/*positioning errors tags*/
+@media screen and (min-width: 768px) and (max-width: 991px){
+
+	#panierVide, #pbar, #sendResult{
+		position: absolute;
+		left: -248px;
+		top: 60px;
+	}
+
+}
+
+@media screen and (min-width: 991px) and (max-width: 1024px){
+
+	.valeurPanier h4{
+		font-size: 19px;
+		font-weight: bold;
+	}
+}
+
+@media screen and (min-width: 992px){
+
+	#panierVide, #pbar, #sendResult{
+		position: absolute;
+		left: -530px;
+		top: 60px;
+		width: 100%;
+	}
+
+}
+
+@media screen and (max-width: 767px){
+	.valeurPanier{
+		margin-top: 10px;
+	}
+
+	#panierVide, #pbar, #sendResult{
+		position: absolute;
+		top: 110px;
+		font-size: 18px;
+		/*width: 100%;*/
+	}
+
+	#clientList{
+		font-size: 18px;
+	}
+}
+
+/****************************************************************************************************************/

@@ -35,6 +35,7 @@
                                 </button>
                             </div>
                         </div>
+                        <input id="csrftoken" type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash();?>">
                     <!-- <?php echo form_close() ?> -->
                 </div>
             </div>

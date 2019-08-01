@@ -7,9 +7,37 @@ Class Ajaxqueries extends CI_Controller{
 
 	private $numCmde;
     private $sendState;
-    private $filename = "commandeClient.txt";
+    private $filename;
+    private $perpage;
+
+    public function __construct(){
+        parent::__construct();
+        // security
+        $allowed = array(
+            'userlogin',
+            'validatelogin',
+        );
+        if (!isset($this->session->id) && ! in_array($this->router->fetch_method(), $allowed)) {
+           redirect('login');
+        }
+
+        $this->load->model('queries');
+
+        // pagination
+        $this->config->load('bootstrap_pagination');
+        $config = $this->config->item('pagination_config');
+        $result = $this->queries->countCommandesUser();
+        $config['base_url'] = site_url('statCommandes');
+        $config['total_rows'] = $result;
+        $config['per_page'] = 6;
+        $this->perpage = $config['per_page'];
+        $this->pagination->initialize($config);
+    }
 
 	public function envoiCommande(){
+        //definir le nom du fichier
+        $this->filename = "temp/commandeClient ".date("Y-m-d G:i:s").".txt";
+
 		// echo $this->input->post('prixTotal');
 		$stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
 		$clientdata = json_decode($stream_clean,TRUE);
@@ -25,8 +53,6 @@ Class Ajaxqueries extends CI_Controller{
 			$cmde = $clientdata['order'];
 			$this->generateCode();
 			
-        	$this->load->model('queries');
-
             $userID = $this->session->id;
 
             $dateCmde = date("Y-m-d G:i:s");
@@ -113,6 +139,15 @@ Class Ajaxqueries extends CI_Controller{
 
                 $this->createFile($content);
                 $this->sendMail($body,$lastNum->id);
+                try{
+                    if (is_readable($this->filename)) {
+                        unlink($this->filename);
+                    }
+                }
+                catch(Exception $e){
+
+                }
+
                 echo $this->sendState;
                 // sleep(5);
                 // return response()->json("envoye");
@@ -140,8 +175,10 @@ Class Ajaxqueries extends CI_Controller{
         $mail->Host       = "smtp.gmail.com";
         $mail->Port       = 465; // or 587
         $mail->isSMTP();
+
         $mail->Username = "didier.bayanga@gmail.com";
         $mail->Password = "siappharma2019";
+
         $mail->SetFrom($this->session->email, $this->session->name);
         $mail->Subject = "Commande de ".$this->session->name;
         $mail->Body    = $body;
@@ -153,7 +190,6 @@ Class Ajaxqueries extends CI_Controller{
             $this->sendState = "commande envoyee";
         } else {
             //suppression des donnees concernant cette commande
-            $this->load->model('queries');
             $this->queries->resetLastCommande($this->numCmde);
             $this->queries->resetLastLigneCommande($lastNum);
 
@@ -162,7 +198,6 @@ Class Ajaxqueries extends CI_Controller{
     }
 
     protected function generateCode(){
-    	$this->load->model('queries');
         $string = $this->queries->getCommandeId();
             // if($string == FALSE){
             // 	echo "unable to retrieve commandes id in function 'generateCode()'";
@@ -232,21 +267,26 @@ Class Ajaxqueries extends CI_Controller{
         }
     }
 
-    public function chargerCommande(){
-        $this->load->model('queries');
-        $result = $this->queries->loadOrders();
-        if($result == FALSE){
-            echo json_encode(array());
-            return 1;
-        }
+    public function chargerCommande($offset=0){
+        
+        $result = $this->queries->retrieveCommandeUser($this->perpage,$offset);
+        // if($result == FALSE){
+        //     echo json_encode(array());
+        //     return 1;
+        // }
 
-        $result = json_encode($result);
-        echo $result;
+        // $result = json_encode($result);
+        // echo $result;
+
+        $data['stat'] = $result;
+        $data['pagination'] = $this->pagination->create_links();
+        $data['title'] = "Statistiques";
+        // var_dump($data['stat']);
+       $this->load->view('statClients',$data); 
     }
 
     public function chargerLigneCommande($id){
 
-        $this->load->model('queries');
         $result = $this->queries->loadOrderLignes($id);
         if($result == FALSE){
             echo json_encode(array());
@@ -258,7 +298,6 @@ Class Ajaxqueries extends CI_Controller{
     }
 
     public function filtrer($debut,$fin){
-        $this->load->model('queries');
         $result = $this->queries->filter($debut,$fin);
         if ($result == FALSE) {
             $result = array(); 
@@ -287,7 +326,6 @@ Class Ajaxqueries extends CI_Controller{
         }
         else
         {
-                $this->load->model('queries');
 
                 $data = array('upload_data' => $this->upload->data());
                 $file = $data['upload_data']['full_path'];
@@ -313,6 +351,11 @@ Class Ajaxqueries extends CI_Controller{
                 $data['title'] = "Gestion clients";
                 $this->load->view('manageClients', $data);
         }
+    }
+
+    public function commandesClient(){
+        $data['title'] = "Commande";
+        $this->load->view('commandeClient',$data);
     }
 }
 

@@ -7,7 +7,7 @@
                 <div class="card" style="width: 18rem;">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <a href="#stat" onclick="statistique()">Statistiques</a>
+                            <a href="/statCommandes">Statistiques</a>
                         </li>
                         <li class="list-group-item">
                             <a href="#cmde" onclick="commande()">Passer une commande</a>
@@ -19,7 +19,7 @@
                     <!-- section statistiques -->
                     <section id="stat" style="display:none;margin-left:auto;margin-right:auto">
                         <div class="card">
-                        <div class="card-header" style="background-color: #293042;color: #c7c8c8;">
+                        <div class="card-header text-center" style="background-color: #293042;color: #c7c8c8;">
                             Vos statistiques
                         </div>
                         <div class="container-fluid card-body">
@@ -175,7 +175,7 @@
                         <div class="card-body">
                             <!-- <h5 class="card-title">Valorisation du panier</h5> -->
                             <div style="text-align: center;">
-                                <p class="card-text" style="color: #3657cd;">Prix total: <span id="valeur">0</span> fcfa</p>
+                                <p class="card-text" style="color: #3657cd;">Prix total HT: <span id="valeur">0</span> fcfa</p>
                             </div>
                             <div id="val" style="display:block;">
 
@@ -252,4 +252,5 @@
         <br>
     </div>  
 
-    <script src="assets/js/commande.js"></script>
+    <!-- <script src="assets/js/commande.js"></script> -->
+    <?php include('templates/footer.php'); ?>

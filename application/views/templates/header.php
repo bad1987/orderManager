@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?php if (isset($title)) {  echo $title;  } ?></title>
+    <title>Siap Pharma <?php if (isset($title)) {  echo $title;  } ?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo site_url('/assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
@@ -53,42 +53,38 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
       <div class="container">
-        <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Siap pharma</a>
+        <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="<?php echo site_url("home") ?>">Siap pharma</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mx-auto">
             <?php if(isset($this->session->id)){
-                echo "
-                  <li class=\"nav-item active px-lg-4\">
-                    <a class=\"nav-link text-uppercase text-expanded\" href=\"http://www.siappharma.com\">Acceuil
-                      <span class=\"sr-only\">(current)</span>
+                echo '
+                  <li class="nav-item active px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="'.site_url("home").'">Acceuil
+                      <span class="sr-only">(current)</span>
                     </a>
                   </li>
-                  <li class=\"nav-item px-lg-4\">
-                    <a class=\"nav-link text-uppercase text-expanded\" href=\"/dashboard\">Espace Client</a>
+                  <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="'.site_url("statCommandes").'">Statistiques</a>
                   </li>
-                  <!--<li class=\"nav-item px-lg-4\">
-                    <a class=\"nav-link text-uppercase text-expanded\" href=\"/articles\">Statistiques</a>
-                  </li>-->
-                  <li class=\"nav-item px-lg-4\">
-                    <a class=\"nav-link text-uppercase text-expanded\" href=\"#stat\" onclick=\"statistique()\">Statistiques</a>
+                  <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="'.site_url("commandeclient").'">Passer une commande</a>
                   </li>
-                  <li class=\"nav-item px-lg-4\">
-                    <a class=\"nav-link text-uppercase text-expanded\" onclick=\"commande()\" href=\"#cmde\">Passer une commande</a>
+                  <li class="nav-item px-lg-4">
+                  <a class="nav-link text-uppercase text-expanded" href="'.site_url("logout").'">Se déconnecter</a>
                   </li>
-                  <li class=\"nav-item px-lg-4\">
-                  <a class=\"nav-link text-uppercase text-expanded\" href=\"/logout\">Se déconnecter</a>
-                  </li>
-                ";
+                ';
               }
               else{
-                    echo "<li class=\"nav-item px-lg-4\">
-                    <a class=\"nav-link text-uppercase text-expanded\" href=\"/login\">Connexion</a>
-                  </li>";
+                    echo '<li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="'.site_url("login").'">Connexion</a>
+                  </li>';
                 } ?>
           </ul>
         </div>
       </div>
     </nav>
+<!-- retrieving the base url for javascript -->
+<p hidden id="baseurl"><?php echo site_url(); ?></p>
